@@ -7,7 +7,7 @@ global VarInteger := 1
 global VarFloat := 3.3
 global VarString:="one\g\k`n"
 
-global  arr_int:= Array(1,2,3)
+global  arr_int:= Array(1,,3)
 global  arr_float:= Array(1.1,2.2,3.3)
 global  arr_string := Array("one\g\k`n", "two", "three")
 
@@ -35,7 +35,7 @@ global arr_string_array_arr:= Array(arr_string,arr_string)
 
 
 Sleep 1000
-
+KEPluginParamOutput(arr_int)
 
 
 ;-----------------------один параметр----------------------

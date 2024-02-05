@@ -34,6 +34,7 @@ if !hLib := DllCall('LoadLibrary', 'Str', dllPath, 'Ptr') {
 }
 
 MsgBox "start"
+;script := FileRead('Volume control.ahk')
 script := FileRead('test_output.ahk')
 DllCall(dllPath . '\ahkSetHwndKew', 'Ptr', A_ScriptHwnd, 'UInt', 1, 'UInt', 0, 'Cdecl')
 ;DllCall(dllPath . '\NewThread', 'Str', script, 'Str', '1 ' . A_ScriptHwnd . ' "local test"', 'Str', 'MuteControl.v2.ahk', 'UInt', 0, 'Ptr', 0, 'Cdecl')
@@ -42,7 +43,7 @@ DllCall(dllPath . '\ahktextdll', 'Str', script, 'Str', '1 ' . A_ScriptHwnd . ' "
 
 VarInteger :=Buffer(1000)
 
-
+DllCall(KEahkgetvar, 'Str', 'VarStringJSON', 'Ptr', VarInteger, 'UInt', 1000, 'UInt', 0, 'Cdecl')
 DllCall(KEahkgetvar, 'Str', 'VarInteger', 'Ptr', VarInteger, 'UInt', 1000, 'UInt', 0, 'Cdecl')
 DllCall(KEahkgetvar, 'Str', 'VarFloat', 'Ptr', VarInteger, 'UInt', 1000, 'UInt', 0, 'Cdecl')
 DllCall(KEahkgetvar, 'Str', 'VarString', 'Ptr', VarInteger, 'UInt', 1000, 'UInt', 0, 'Cdecl')
