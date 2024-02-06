@@ -1,9 +1,9 @@
 ﻿;global space_:=Array()
 
-global VarStringJSON:="[{""id"":""one\\g\\k\n"",""value"":1.1}]"
+global VarStringJSON:="[{""id"":""one\\g\\k`n"",""value"":1.1}]"
 global VarInteger := 1
 global VarFloat := 3.3
-global VarString:=VarStringJSON
+global VarString:="one\\g\\k`n"
 
 global  arr_int:= Array(1,,3)
 global  arr_float:= Array(1.1,2.2,3.3)
@@ -22,7 +22,7 @@ global arr_string_array_arr:= Array(arr_string,arr_string)
 Sleep 1000
 KEPluginParamOutput(arr_int)
 KEPluginParamOutput(Array("1",,"3"))	
-KEPluginParamOutput("[{""id"":""one\\g\\k\n"",""value"":1.1}]")
+;KEPluginParamOutput("[{""id"":""one\g\k`n"",""value"":1.1}]")
 KEPluginParamOutput("234re1")
 KEPluginParamOutput(3.3)
 KEPluginParamOutput({123: 1, name2: 2, "name3": 3})	

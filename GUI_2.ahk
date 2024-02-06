@@ -43,6 +43,7 @@ KEahkgetvar := DllCall('GetProcAddress', 'Ptr', hLib, 'AStr', 'KEahkGetVar', 'Pt
 
 VarInteger :=Buffer(1000)
 
+VarInteger := DllCall(KEahkgetvar, 'Str', 'VarStringJSON', 'UInt', 0, 'UInt', threadId_ahk2, 'Ptr', 0, 'Cdecl')
 VarInteger := DllCall(KEahkgetvar, 'Str', 'VarInteger', 'UInt', 0, 'UInt', threadId_ahk2, 'Ptr', 0, 'Cdecl')
 VarInteger := DllCall(KEahkgetvar, 'Str', 'VarFloat',  'UInt', 0, 'UInt', threadId_ahk2, 'Ptr', 0, 'Cdecl')
 VarInteger := DllCall(KEahkgetvar, 'Str', 'VarString',  'UInt', 0, 'UInt', threadId_ahk2, 'Ptr', 0, 'Cdecl')
