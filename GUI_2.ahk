@@ -39,10 +39,14 @@ DllCall(dllPath . '\ahkSetHwndKew', 'Ptr', A_ScriptHwnd, 'UInt', 1, 'UInt', 0, '
 threadId_ahk2 := DllCall(dllPath . '\NewThread', 'Str', script, 'Str', '1 ' . A_ScriptHwnd . ' "local test"', 'Str', 'MuteControl.v2.ahk', 'UInt', 0, 'Ptr', 0, 'Cdecl')
 KEahkgetvar := DllCall('GetProcAddress', 'Ptr', hLib, 'AStr', 'KEahkGetVar', 'Ptr')
 
+ahkGetWindow := DllCall('GetProcAddress', 'Ptr', hLib, 'AStr', 'ahkGetWindow', 'Ptr')
+HWND := DllCall(ahkGetWindow, 'UInt', threadId_ahk2, 'Ptr', 0, 'Cdecl')
+DllCall(dllPath . '\ahkSetHwndKew', 'Ptr', HWND, 'UInt', 1, 'UInt', 0, 'Cdecl')
+
 ;DllCall(dllPath . '\ahktextdll', 'Str', script, 'Str', '1 ' . A_ScriptHwnd . ' "local test"', 'Str', 'MuteControl.v2.ahk',  'Ptr', 0, 'Cdecl')
 
 VarInteger :=Buffer(1000)
-
+/*
 VarInteger := DllCall(KEahkgetvar, 'Str', 'VarStringJSON', 'UInt', 0, 'UInt', threadId_ahk2, 'Ptr', 0, 'Cdecl')
 VarInteger := DllCall(KEahkgetvar, 'Str', 'VarInteger', 'UInt', 0, 'UInt', threadId_ahk2, 'Ptr', 0, 'Cdecl')
 VarInteger := DllCall(KEahkgetvar, 'Str', 'VarFloat',  'UInt', 0, 'UInt', threadId_ahk2, 'Ptr', 0, 'Cdecl')
@@ -65,7 +69,7 @@ VarInteger := DllCall(KEahkgetvar, 'Str', 'obj_string',  'UInt', 0, 'UInt', thre
 VarInteger := DllCall(KEahkgetvar, 'Str', 'arr_int_array_arr',  'UInt', 0, 'UInt', threadId_ahk2, 'Ptr', 0, 'Cdecl')
 VarInteger := DllCall(KEahkgetvar, 'Str', 'arr_float_array_arr',  'UInt', 0, 'UInt', threadId_ahk2, 'Ptr', 0, 'Cdecl')
 VarInteger := DllCall(KEahkgetvar, 'Str', 'arr_string_array_arr', 'UInt', 0, 'UInt', threadId_ahk2, 'Ptr', 0, 'Cdecl')
-
+*/
 wnd := Gui('AlwaysOnTop')
 wnd.OnEvent('Close', (*) => ExitApp())
 wnd.SetFont('s16', 'Calibri')

@@ -1,9 +1,31 @@
 ﻿;global space_:=Array()
+#Persistent
+;OnKEPluginParamInput("KEPluginParamInput")
+SetTimer , Timer, -1000
 
-global VarStringJSON:="[{""id"":""one\\g\\k`n"",""value"":1.1}]"
+
+
+
+KEPluginParamInput(name, value)
+{
+	MsgBox "1234"
+	
+}
+
+
+Timer() {
+	
+ KEPluginParamOutput("123","123")
+ 
+}
+
+
+
+/*
+global VarStringJSON:="{""out"":[{""id"":""name1"",""value"":1},{""id"":""name2"",""value"":2},{""id"":""name3"",""value"":3}]}"
 global VarInteger := 1
 global VarFloat := 3.3
-global VarString:="one\\g\\k`n"
+global VarString:="one\g\k`n"
 
 global  arr_int:= Array(1,,3)
 global  arr_float:= Array(1.1,2.2,3.3)
@@ -20,7 +42,10 @@ global arr_string_array_arr:= Array(arr_string,arr_string)
 
 
 Sleep 1000
-KEPluginParamOutput(arr_int)
+KEPluginParamOutput("""{""id"":""one\g\k`n"",""value"":1.1}""")
+
+KEPluginParamOutput(VarStringJSON)
+KEPluginParamOutput("[{""id"":""one\g\k`n"",""value"":1.1}]")
 KEPluginParamOutput(Array("1",,"3"))	
 ;KEPluginParamOutput("[{""id"":""one\g\k`n"",""value"":1.1}]")
 KEPluginParamOutput("234re1")
@@ -79,3 +104,66 @@ KEPluginParamOutput("arr_int_ID", arr_string, arr_int)			;{"arr_int_ID":[{"id":"
 KEPluginParamOutput("arr_float_ID", arr_string, arr_float)		;{"arr_float_ID":[{"id":"one","value":1.1},{"id":"two","value":2.2},{"id":"three","value":3.3}]}
 KEPluginParamOutput("arr_string_ID", arr_string, arr_string) 	;{"arr_string_ID":[{"id":"one","value":"one"},{"id":"two","value":"two"},{"id":"three","value":"three"}]}
 
+
+
+
+paramName := "param\value`n`t"
+KEPluginParamOutput(paramName)
+
+paramName := ["one", "two", "three"]
+KEPluginParamOutput(paramName)
+
+
+paramName := {"key1": "value1", "key2": "value2"}
+KEPluginParamOutput(paramName)
+
+;obj := Map("paramName1", "paramValue1", "paramName2", "paramValue2")
+;KEPluginParamOutput(obj)
+
+; или без предварительного сохранения Map в переменную
+;KEPluginParamOutput(Map("paramName1", "paramValue1", "paramName2", "paramValue2"))"
+
+paramName := "param name"
+paramValue := "param value"
+KEPluginParamOutput(paramName, paramValue)
+
+; или без предварительного сохранения текста в переменные
+KEPluginParamOutput("param name", "param value")
+
+paramName := "param name"
+paramValue := ["one", "two", "three"]
+KEPluginParamOutput(paramName, paramValue)
+
+; или без предварительного сохранения в переменные
+KEPluginParamOutput("param name", ["one", "two", "three"])
+
+paramName := "param name"
+paramValue := [] ; пустой массив
+KEPluginParamOutput(paramName, paramValue)
+
+
+paramName := "param name"
+paramValue := {"key1": "value1", "key2": "value2"}
+KEPluginParamOutput(paramName, paramValue)
+
+; или без предварительного сохранения в переменные
+KEPluginParamOutput("param name", {"key1": "value1", "key2": "value2"})
+
+paramName := "param name"
+paramValue := {} ; пустой объект
+KEPluginParamOutput(paramName, paramValue)
+
+;paramName := "param name"
+;obj := Map(1, "value1", 2, "value2")
+;KEPluginParamOutput(paramName, obj)
+
+;paramName := "param name"
+;obj := Map()
+;KEPluginParamOutput(paramName, obj)
+
+
+paramName := "param name"
+arr_ids:= ["par1", "par2", "par3"]
+arr_values := ["one", "two", "three"]
+KEPluginParamOutput(paramName, arr_ids, arr_values)
+*/

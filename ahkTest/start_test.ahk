@@ -97,10 +97,12 @@ if (!script_ahk2){
 ;загрузка скрипта ahk
 ;DllCall(ahkSetHwndKew, 'Ptr', A_ScriptHwnd, 'UInt', 1, 'UInt', 0, 'Cdecl')
 threadId_ahk :=DllCall(ahktextdll, 'Str', script_ahk1, 'Str', '', 'Str', 'ahk',  'Ptr', 0, 'Cdecl')
+
 if (!threadId_ahk){
 	throw OSError('Failed threadId_ahk')
 }
 hwnd_ahk := DllCall(ahkgetwindow, 'Ptr', 0, 'Cdecl') ;получаем хэнл ahk
+MsgBox hwnd_ahk
 if (!hwnd_ahk) 
 	throw OSError('Failed hwnd_ahk')
 	

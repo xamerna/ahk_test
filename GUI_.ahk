@@ -35,14 +35,20 @@ if !hLib := DllCall('LoadLibrary', 'Str', dllPath, 'Ptr') {
 
 MsgBox "start"
 ;script := FileRead('Volume control.ahk')
-script := FileRead('test_output.ahk')
-DllCall(dllPath . '\ahkSetHwndKew', 'Ptr', A_ScriptHwnd, 'UInt', 1, 'UInt', 0, 'Cdecl')
+script := FileRead('Selected file info & file type converter.ahk')
+;DllCall(dllPath . '\ahkSetHwndKew', 'Ptr', A_ScriptHwnd, 'UInt', 1, 'UInt', 0, 'Cdecl')
 ;DllCall(dllPath . '\NewThread', 'Str', script, 'Str', '1 ' . A_ScriptHwnd . ' "local test"', 'Str', 'MuteControl.v2.ahk', 'UInt', 0, 'Ptr', 0, 'Cdecl')
 KEahkgetvar := DllCall('GetProcAddress', 'Ptr', hLib, 'AStr', 'KEahkgetvar', 'Ptr')
-DllCall(dllPath . '\ahktextdll', 'Str', script, 'Str', '1 ' . A_ScriptHwnd . ' "local test"', 'Str', 'MuteControl.v2.ahk',  'Ptr', 0, 'Cdecl')
+ahkgetwindow := DllCall('GetProcAddress', 'Ptr', hLib, 'AStr', 'ahkgetwindow', 'Ptr')
+threadId_ahk :=DllCall(dllPath . '\ahktextdll', 'Str', script, 'Str', '1 ' . A_ScriptHwnd . ' "local test"', 'Str', 'MuteControl.v2.ahk',  'Ptr', 0, 'Cdecl')
+
+;hwnd_ahk := DllCall(ahkgetwindow, 'Ptr', 0, 'Cdecl') ;получаем хэнл ahk
+;MsgBox hwnd_ahk
+;Sleep 100
+;DllCall(dllPath . '\ahkSetHwndKew', 'Ptr', hwnd_ahk, 'UInt', 1, 'UInt', 0, 'Cdecl')
 
 VarInteger :=Buffer(1000)
-
+/*
 DllCall(KEahkgetvar, 'Str', 'VarStringJSON', 'Ptr', VarInteger, 'UInt', 1000, 'UInt', 0, 'Cdecl')
 DllCall(KEahkgetvar, 'Str', 'VarInteger', 'Ptr', VarInteger, 'UInt', 1000, 'UInt', 0, 'Cdecl')
 DllCall(KEahkgetvar, 'Str', 'VarFloat', 'Ptr', VarInteger, 'UInt', 1000, 'UInt', 0, 'Cdecl')
@@ -56,7 +62,7 @@ DllCall(KEahkgetvar, 'Str', 'obj_string', 'Ptr', VarInteger, 'UInt', 1000, 'UInt
 DllCall(KEahkgetvar, 'Str', 'arr_int_array_arr', 'Ptr', VarInteger, 'UInt', 1000, 'UInt', 0, 'Cdecl')
 DllCall(KEahkgetvar, 'Str', 'arr_float_array_arr', 'Ptr', VarInteger, 'UInt', 1000, 'UInt', 0, 'Cdecl')
 DllCall(KEahkgetvar, 'Str', 'arr_string_array_arr', 'Ptr', VarInteger, 'UInt', 1000, 'UInt', 0, 'Cdecl')
-
+*/
 wnd := Gui('AlwaysOnTop')
 wnd.OnEvent('Close', (*) => ExitApp())
 wnd.SetFont('s16', 'Calibri')
